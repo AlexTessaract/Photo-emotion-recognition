@@ -1,0 +1,40 @@
+<center>
+   <nav class="navbar navbar-dark bg-dark ">
+   
+   
+      <h1<font color="red" class="entry-title" style="text-align: center;" >Распознавание эмоций с Deep learning</h1>
+	 
+   </nav>
+   
+<h1 class="entry-title" style="text-align: center;"><img style="font-size: 16px; font-family: -webkit-standard;" src="/static/detect.png" alt="" width="512" height="128" /></h1>
+
+ </center>
+  
+
+{%extends "base.html"%}
+
+{%block content%}
+<body>
+<center>
+
+<img src="{{url_for('static', filename='after.jpg')}}" height=50% width=50% >
+
+</body>
+
+<h4 class='text-primary'> <span class='text-primary font-weight-bold'> {{data}} </span> </h4>
+
+ </body>
+
+
+
+</center>
+</body>
+<footer>
+	<nav class="navbar navbar-dark bg-dark ">
+   <center>
+      <h5 font color="white" class="entry-title" style="text-align: center;">&#169; Александр Коротких - 2022 Tessaract.co</h5>
+	  </center>
+   </nav>
+</footer>
+
+{%endblock%}
