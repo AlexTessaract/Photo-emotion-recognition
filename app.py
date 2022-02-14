@@ -20,7 +20,7 @@ def predict():
 	image = cv2.imread('static/recognize/file.jpg')
 
 	gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-	cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt2.xml')
+	cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 	
 	faces = cascade.detectMultiScale(gray, 1.3, 5)
 
