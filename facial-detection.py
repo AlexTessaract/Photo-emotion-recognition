@@ -176,7 +176,7 @@ def getData(path):
                     pass
              
             if df.iloc[i]['emotion'] == 7:
-                if neutral <= 4000:            
+                if disgust <= 4000:            
                     y.append(df.iloc[i]['emotion'])
                     im = df.iloc[i]['pixels']
                     im = [int(x) for x in im.split()]
