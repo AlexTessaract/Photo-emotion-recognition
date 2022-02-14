@@ -32,7 +32,7 @@ len(df.iloc[0]['pixels'].split())
 # In[ ]:
 
 
-label_map = ['Anger', 'Neutral', 'Fear', 'Happy', 'Sad', 'Surprise']
+label_map = ['Anger', 'Neutral', 'Fear', 'Happy', 'Sad', 'Surprise', 'Disgust']
 
 
 # In[ ]:
@@ -107,6 +107,7 @@ def getData(path):
     happy = 0
     surprise = 0
     neutral = 0
+    disgust = 0
     df = pd.read_csv(path)
     
     X = []
@@ -171,6 +172,16 @@ def getData(path):
                     im = [int(x) for x in im.split()]
                     X.append(im)
                     neutral += 1
+                else:
+                    pass
+             
+            if df.iloc[i]['emotion'] == 7:
+                if neutral <= 4000:            
+                    y.append(df.iloc[i]['emotion'])
+                    im = df.iloc[i]['pixels']
+                    im = [int(x) for x in im.split()]
+                    X.append(im)
+                    disgust += 1
                 else:
                     pass
 
