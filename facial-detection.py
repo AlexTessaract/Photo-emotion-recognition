@@ -381,5 +381,5 @@ model.predict(test_img)
 # In[ ]:
 
 
-# label_map = ['Anger', 'Neutral', 'Fear', 'Happy', 'Sad', 'Surprise']
+# label_map = ['Anger', 'Neutral', 'Fear', 'Happy', 'Sad', 'Surprise','Disgust']
 
