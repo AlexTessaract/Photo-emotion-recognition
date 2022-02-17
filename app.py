@@ -56,7 +56,7 @@ def predict():
 	pred = model.predict(img)
 
 
-	label_map = ['Anger', 'Neutral', 'Fear', 'Happy', 'Sad', 'Surprise', 'Disgust']
+	label_map = ['Гнев', 'Безразличие', 'Страх', 'Счастье', 'Печаль', 'Удивление', 'Презрение']
 	pred = np.argmax(pred)
 	final_pred = label_map[pred]
 
