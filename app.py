@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import cv2
 import numpy as np 
 from tensorflow.keras.models import load_model
-from tensorflow.keras.models import model_from_json
+
 
 app = Flask(__name__)
 
@@ -51,12 +51,12 @@ def predict():
 
 	img = img.reshape(1,48,48,1)
 
-	model = load_model('model.json', 'model_weights.h5')
+	model = load_model('model.h5')
 
 	pred = model.predict(img)
 
 
-	label_map = ["Гнев", "Презрение","Страх", "Счастье","Безразличие", "Печаль","Удивление"]
+	label_map = ['Anger', 'Neutral', 'Fear', 'Happy', 'Sad', 'Surprise', 'Disgust']
 	pred = np.argmax(pred)
 	final_pred = label_map[pred]
 
