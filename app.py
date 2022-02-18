@@ -51,12 +51,12 @@ def predict():
 
 	img = img.reshape(1,48,48,1)
 
-	model = load_model('model.h5')
+	model = load_model('fer_model.h5')
 
 	pred = model.predict(img)
 
 
-	label_map = ['Гнев', 'Безразличие' , 'Страх', 'Счастье', 'Печаль', 'Удивление']
+	label_map = ["Гнев" ,"Отвращение","Страх", "Счастье", "Безразличие", "Печаль",  "Удивление"]
 	pred = np.argmax(pred)
 	final_pred = label_map[pred]
 
