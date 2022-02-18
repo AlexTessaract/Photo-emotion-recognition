@@ -32,7 +32,7 @@ len(df.iloc[0]['pixels'].split())
 # In[ ]:
 
 
-label_map = ['Anger','Disgust','Fear','Sad','Happy','Surprise','Neutral']
+label_map = ['Anger', 'Neutral', 'Fear', 'Happy', 'Sad', 'Surprise']
 
 
 # In[ ]:
@@ -102,7 +102,6 @@ y = []
 
 def getData(path):
     anger = 0
-    disgust = 0
     fear = 0
     sad = 0
     happy = 0
@@ -114,6 +113,7 @@ def getData(path):
     y = []    
     
     for i in range(len(df)):
+        if df.iloc[i]['emotion'] != 1:
             if df.iloc[i]['emotion'] == 0:
                 if anger <= 4000:            
                     y.append(df.iloc[i]['emotion'])
@@ -121,17 +121,6 @@ def getData(path):
                     im = [int(x) for x in im.split()]
                     X.append(im)
                     anger += 1
-                else:
-                    pass
-                
-            for i in range(len(df)):
-            if df.iloc[i]['emotion'] == 1:
-                if disgust <= 4000:            
-                    y.append(df.iloc[i]['emotion'])
-                    im = df.iloc[i]['pixels']
-                    im = [int(x) for x in im.split()]
-                    X.append(im)
-                    disgust += 1
                 else:
                     pass
                 
@@ -146,22 +135,22 @@ def getData(path):
                     pass
                 
             if df.iloc[i]['emotion'] == 3:
-                if sad <= 4000:            
-                    y.append(df.iloc[i]['emotion'])
-                    im = df.iloc[i]['pixels']
-                    im = [int(x) for x in im.split()]
-                    X.append(im)
-                    sad += 1
-                else:
-                    pass
-                
-            if df.iloc[i]['emotion'] == 4:
                 if happy <= 4000:            
                     y.append(df.iloc[i]['emotion'])
                     im = df.iloc[i]['pixels']
                     im = [int(x) for x in im.split()]
                     X.append(im)
                     happy += 1
+                else:
+                    pass
+                
+            if df.iloc[i]['emotion'] == 4:
+                if sad <= 4000:            
+                    y.append(df.iloc[i]['emotion'])
+                    im = df.iloc[i]['pixels']
+                    im = [int(x) for x in im.split()]
+                    X.append(im)
+                    sad += 1
                 else:
                     pass
                 
@@ -184,8 +173,6 @@ def getData(path):
                     neutral += 1
                 else:
                     pass
-             
-          
 
             
             
@@ -267,8 +254,8 @@ X.shape
 # In[ ]:
 
 
-from tensorflow.keras.utils import to_categorical
-y_new = to_categorical(y_o, num_classes=7)
+from keras.utils import to_categorical
+y_new = to_categorical(y_o, num_classes=6)
 
 
 # In[ ]:
@@ -286,14 +273,15 @@ y_o[150], y_new[150]
 # In[ ]:
 
 
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense , Activation , Dropout ,Flatten
-from tensorflow.keras.layers import Conv2D, MaxPooling2D,Dropout
-from tensorflow.keras.metrics import categorical_accuracy
-from tensorflow.keras.models import model_from_json
-from tensorflow.keras.callbacks import ModelCheckpoint
-from tensorflow.keras.optimizers import *
-from tensorflow.keras.layers import BatchNormalization
+from keras.models import Sequential
+from keras.layers import Dense , Activation , Dropout ,Flatten
+from keras.layers.convolutional import Conv2D
+from keras.layers.convolutional import MaxPooling2D
+from keras.metrics import categorical_accuracy
+from keras.models import model_from_json
+from keras.callbacks import ModelCheckpoint
+from keras.optimizers import *
+from keras.layers.normalization import BatchNormalization
 
 
 # In[ ]:
@@ -329,11 +317,11 @@ model.add(Dense(6, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
 
+
 # In[ ]:
 
 
-#model.fit(X, y_new, epochs=22, batch_size=64, shuffle=True, validation_split=0.2)
-model.summary()
+model.fit(X, y_new, epochs=22, batch_size=64, shuffle=True, validation_split=0.2)
 
 
 # In[ ]:
@@ -357,7 +345,7 @@ test_img = cv2.imread('../input/happy-img-test/pexels-andrea-piacquadio-941693.j
 # In[ ]:
 
 
-test_img = img.shape
+test_img.shape
 
 
 # In[ ]:
@@ -382,6 +370,5 @@ model.predict(test_img)
 # In[ ]:
 
 
-# label_map = ['Anger','Disgust','Fear','Sad','Happy','Surprise','Neutral']
-
+# label_map = ['Anger', 'Neutral', 'Fear', 'Happy', 'Sad', 'Surprise']
 
