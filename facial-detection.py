@@ -380,3 +380,4 @@ model.predict(test_img)
 
 # label_map = ['Anger','Disgust','Fear','Happy','Neutral','Sad','Surprise']
 
+cv2.waitKey()
